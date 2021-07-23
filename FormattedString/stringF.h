@@ -10,20 +10,20 @@
 class stringF {
 public:
 
-    stringF(std::string& p_rawString, unsigned short P_DISPLAY_CHAR_CAP) {
+    stringF(std::string& p_rawString, size_t P_DISPLAY_CHAR_CAP) {
         rawString = p_rawString;
-        DISPLAY_CHAR_CAP = P_DISPLAY_CHAR_CAP - 4;
+        DISPLAY_CHAR_CAP = P_DISPLAY_CHAR_CAP;
         CHARACTER_CAP = 50;
         fString = format(rawString, DISPLAY_CHAR_CAP);
     }
     stringF(const stringF& p_StringF) {
         rawString = p_StringF.rawString;
-        DISPLAY_CHAR_CAP = p_StringF.DISPLAY_CHAR_CAP - 4;
+        DISPLAY_CHAR_CAP = p_StringF.DISPLAY_CHAR_CAP;
         CHARACTER_CAP = p_StringF.CHARACTER_CAP;
         fString = p_StringF.fString;
     }
 
-    std::string& format(std::string& p_rawString, unsigned short P_DISPLAY_CHAR_CAP) {
+    std::string& format(std::string& p_rawString, size_t P_DISPLAY_CHAR_CAP) {
         fString = "  ";
         for (size_t i = 0; i < P_DISPLAY_CHAR_CAP; ++i) {
             if (p_rawString.size() > i) {
@@ -44,8 +44,8 @@ public:
     void setRawString(const std::string &rawString) { stringF::rawString = rawString; }
     const std::string &getFString() const { return fString; }
     void setFString(const std::string &formattedString) { stringF::fString = formattedString; }
-    unsigned short getDisplayCharCap() const { return DISPLAY_CHAR_CAP; }
-    void setDisplayCharCap(unsigned short displayCharCap) { DISPLAY_CHAR_CAP = displayCharCap; }
+    size_t getDisplayCharCap() const { return DISPLAY_CHAR_CAP; }
+    void setDisplayCharCap(size_t displayCharCap) { DISPLAY_CHAR_CAP = displayCharCap; }
 
     bool operator ==(const stringF& passed) {
         if (rawString != passed.rawString || fString != passed.fString || CHARACTER_CAP != passed.CHARACTER_CAP || DISPLAY_CHAR_CAP != passed.DISPLAY_CHAR_CAP) {
@@ -73,8 +73,8 @@ public:
 private:
     std::string rawString;
     std::string fString;
-    unsigned int CHARACTER_CAP;
-    unsigned short DISPLAY_CHAR_CAP;
+    size_t CHARACTER_CAP;
+    size_t DISPLAY_CHAR_CAP;
 };
 
 
