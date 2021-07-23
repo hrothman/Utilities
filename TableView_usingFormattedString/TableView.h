@@ -58,25 +58,33 @@ public:
     size_t getDisplayCharCap() const {
         return DISPLAY_CHAR_CAP;
     }
-
     void setDisplayCharCap(size_t displayCharCap) {
         DISPLAY_CHAR_CAP = displayCharCap;
     }
 
     void display() {
         bool title = false;
-        std::cout << "______________________________________________________________________\n";
+        displayLine(DISPLAY_CHAR_CAP);
         for (size_t i = 0; i < fVector.size(); ++i) {
             for (size_t j = 0; j < fVector.at(i).size(); ++j) {
                 if (i == 1 && !title) {
-                    std::cout << "______________________________________________________________________\n";
+                    displayLine(DISPLAY_CHAR_CAP);
                     title = true;
                 }
                 std::cout << " | " << fVector.at(i).at(j).getFString();
             }
             std::cout << " | \n";
         }
-        std::cout << "______________________________________________________________________\n";
+        displayLine(DISPLAY_CHAR_CAP);
+    }
+    void displayLine(size_t p_DIS_CHAR_CAP) {
+        for (size_t i = 0; i < fVector.at(0).size(); ++i) {
+            for (size_t j = 0; j < p_DIS_CHAR_CAP + 4; ++j) {
+                std::cout << "-";
+            }
+            std::cout << "----";
+        }
+        std::cout << "\n";
     }
 
 
