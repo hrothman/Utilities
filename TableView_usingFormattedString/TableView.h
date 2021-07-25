@@ -2,12 +2,12 @@
 // Created by Hayden Rothman on 7/22/2021.
 //
 
-#ifndef FORMATTEDSTRING_FORSALESSYSTEMUI_TABLEVIEW_H
-#define FORMATTEDSTRING_FORSALESSYSTEMUI_TABLEVIEW_H
+#ifndef SALESSYSTEM_TABLEVIEW_H
+#define SALESSYSTEM_TABLEVIEW_H
 
 #include <vector>
 #include <iostream>
-#include "stringF.h"
+#include "FormattedString.h"
 
 class tableView {
 public:
@@ -15,6 +15,16 @@ public:
         DISPLAY_CHAR_CAP = P_DISP_CHAR_CAP;
         rowCount = p_brdVct.at(0).size();
         columnCount = p_brdVct.size();
+        format(p_brdVct);
+    }
+
+    void empty() { 
+        for (auto element : fVector)
+            element.clear();
+        fVector.clear();
+    }
+    void format(std::vector<std::vector<std::string>> p_brdVct) {
+        empty();
         for (auto & i : p_brdVct) {
             std::vector<stringF> newColumnVector;
             for (auto & j : i) {
@@ -24,7 +34,7 @@ public:
             fVector.push_back(newColumnVector);
         }
     }
-
+    
     const std::vector<std::vector<stringF>> &getFVector() const {
         return fVector;
     }
@@ -95,5 +105,5 @@ private:
     size_t DISPLAY_CHAR_CAP;
 };
 
+#endif
 
-#endif //FORMATTEDSTRING_FORSALESSYSTEMUI_TABLEVIEW_H
